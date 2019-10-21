@@ -14,15 +14,15 @@ public class TimeZoneController {
     @GetMapping("/worldclock")
     public String getTimeByTimezone(ModelMap model, @RequestParam(name = "city", required = false, defaultValue = "Asia/Ho_Chi_Minh") String city) {
 
-        // Get current time at local
+                                                    // Get current time at local
         Date date = new Date();
-// Get timezone by the local
+                                                // Get timezone by the local
         TimeZone local = TimeZone.getDefault();
-// Get timezone by the specified city
+                                                            // Get timezone by the specified city
         TimeZone locale = TimeZone.getTimeZone(city);
         long locale_time = date.getTime() +
                 (locale.getRawOffset() - local.getRawOffset());
-// Reset the date by locale_time
+                                                                            // Reset the date by locale_time
         date.setTime(locale_time);
         model.addAttribute("city", city);
         model.addAttribute("date", date);
